@@ -51,14 +51,14 @@ func main() {
 
 	c.OnScraped(func(r *colly.Response) {
 		fmt.Println("Finished", r.Request.URL)
-		js, err := json.MarshalIndent(allArticles, "", "    ")
+		js, err := json.MarshalIndent(allArticles, "", " ")
 		if err != nil {
 			log.Fatal(err)
 		}
 		fmt.Println("Writing data to file")
-		if err := os.WriteFile("posts.json", js, 0664); err == nil {
+		if err := os.WriteFile("culturePosts.txt", js, 0664); err == nil {
 			fmt.Println("Data written to file successfully")
-			c.Visit("https://www.timeout.com/barcelona/culture")
+			c.Visit("https://www.timeout.com/barcelona")
 		}
 
 	})
